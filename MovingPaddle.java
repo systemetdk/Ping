@@ -20,7 +20,7 @@ public class MovingPaddle extends Actor
     {
         this.width = width;
         this.height = height;
-        dx = 1;
+        dx = 2;
         createImage();
     }
 
@@ -52,9 +52,8 @@ public class MovingPaddle extends Actor
      */
     private void createImage()
     {
-        GreenfootImage image = new GreenfootImage(width, height);
-        image.setColor(Color.BLACK);
-        image.fill();
+        GreenfootImage image = new GreenfootImage("paddle.png");
+        image.scale(200, 40);
         setImage(image);
     }
 

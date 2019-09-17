@@ -20,7 +20,6 @@ public class Paddle extends Actor
     {
         this.width = width;
         this.height = height;
-        dx = 1;
         createImage();
     }
 
@@ -33,21 +32,21 @@ public class Paddle extends Actor
         move();
     }    
     
-    public void move() {
+    private void move() {
         if (Greenfoot.isKeyDown("left") && !hitsLeftWall()) {
-            dx = -1;
+            dx = -2;
             setLocation(getX() + dx, getY());
         } else if (Greenfoot.isKeyDown("right")  && !hitsRightWall()) {
-            dx = 1;
+            dx = 2;
             setLocation(getX() + dx, getY());
         }
     }
     
-    public boolean hitsRightWall() {
+    private boolean hitsRightWall() {
         return getX() + width/2 >= getWorld().getWidth();
     }
     
-    public boolean hitsLeftWall() {
+    private boolean hitsLeftWall() {
         return getX() - width/2 <= 0;
     }
 
@@ -56,9 +55,8 @@ public class Paddle extends Actor
      */
     private void createImage()
     {
-        GreenfootImage image = new GreenfootImage(width, height);
-        image.setColor(Color.BLACK);
-        image.fill();
+        GreenfootImage image = new GreenfootImage("paddle.png");
+        image.scale(200, 40);
         setImage(image);
     }
 

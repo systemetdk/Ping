@@ -14,10 +14,12 @@ public class Ball extends Actor
     private static final int STARTING_ANGLE_WIDTH = 90;
     private static final int DELAY_TIME = 100;
 
-    private int speed;
+    private static int speed;
     private boolean hasBouncedHorizontally;
     private boolean hasBouncedVertically;
     private int delay;
+    private int userHits;
+    private GreenfootImage image;
 
     /**
      * Contructs the ball and sets it in motion!
@@ -31,10 +33,14 @@ public class Ball extends Actor
      * Creates and sets an image of a black ball to this actor.
      */
     private void createImage() {
-        GreenfootImage ballImage = new GreenfootImage(BALL_SIZE,BALL_SIZE);
-        ballImage.setColor(Color.BLACK);
-        ballImage.fillOval(0, 0, BALL_SIZE, BALL_SIZE);
-        setImage(ballImage);
+        image = new GreenfootImage("ball.png");
+        image.scale(BALL_SIZE, BALL_SIZE);
+        setImage(image);
+        
+        //GreenfootImage ballImage = new GreenfootImage(BALL_SIZE,BALL_SIZE);
+        //ballImage.setColor(Color.BLACK);
+        //ballImage.fillOval(0, 0, BALL_SIZE, BALL_SIZE);
+        //setImage(ballImage);
     }
 
     /**
@@ -60,6 +66,10 @@ public class Ball extends Actor
         
         if(paddle != null) {
             revertVertically();
+            userHits++;
+            if (userHits % 10 == 0) {
+                speed++;
+            }
         }
     }
     
@@ -171,7 +181,8 @@ public class Ball extends Actor
      */
     private void init()
     {
-        speed = 2;
+        speed = 1;
+        userHits = 0;
         delay = DELAY_TIME;
         hasBouncedHorizontally = false;
         hasBouncedVertically = false;
@@ -180,5 +191,9 @@ public class Ball extends Actor
 
     public boolean movingUp() {
         return getRotation() >= 180;
+    }
+    
+    public static int getSpeed() {
+        return speed;
     }
 }
