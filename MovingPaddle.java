@@ -53,7 +53,7 @@ public class MovingPaddle extends Actor
     private void createImage()
     {
         GreenfootImage image = new GreenfootImage("paddle.png");
-        image.scale(200, 40);
+        image.scale(width, height);
         setImage(image);
     }
 

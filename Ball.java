@@ -37,10 +37,10 @@ public class Ball extends Actor
         image.scale(BALL_SIZE, BALL_SIZE);
         setImage(image);
         
-        //GreenfootImage ballImage = new GreenfootImage(BALL_SIZE,BALL_SIZE);
-        //ballImage.setColor(Color.BLACK);
-        //ballImage.fillOval(0, 0, BALL_SIZE, BALL_SIZE);
-        //setImage(ballImage);
+        // GreenfootImage ballImage = new GreenfootImage(BALL_SIZE,BALL_SIZE);
+        // ballImage.setColor(Color.BLACK);
+        // ballImage.fillOval(0, 0, BALL_SIZE, BALL_SIZE);
+        // setImage(ballImage);
     }
 
     /**
@@ -65,6 +65,7 @@ public class Ball extends Actor
         Paddle paddle = (Paddle) getOneObjectAtOffset(0, 0, Paddle.class);
         
         if(paddle != null) {
+            Greenfoot.playSound("au.wav");
             revertVertically();
             userHits++;
             if (userHits % 10 == 0) {
@@ -77,6 +78,7 @@ public class Ball extends Actor
         MovingPaddle movingPaddle = (MovingPaddle) getOneObjectAtOffset(0, 0, MovingPaddle.class);
         
         if(movingPaddle != null && movingUp()) {
+            Greenfoot.playSound("au.wav");
             revertVertically();
         }
     }
@@ -113,6 +115,7 @@ public class Ball extends Actor
     {
         if (isTouchingSides())
         {
+            Greenfoot.playSound("au.wav");
             if (! hasBouncedHorizontally)
             {
                 revertHorizontally();
@@ -132,6 +135,7 @@ public class Ball extends Actor
     {
         if (isTouchingCeiling())
         {
+            Greenfoot.playSound("au.wav");
             if (! hasBouncedVertically)
             {
                 revertVertically();
@@ -151,6 +155,7 @@ public class Ball extends Actor
     {
         if (isTouchingFloor())
         {
+            Greenfoot.playSound("die.wav");
             init();
             setLocation(getWorld().getWidth() / 2, getWorld().getHeight() / 2);
         }
